@@ -14,6 +14,12 @@ import androidx.recyclerview.widget.RecyclerView
  */
 class ViewPager2Adapter: RecyclerView.Adapter<ViewPager2Adapter.PagerViewHolder>(){
     private var list = emptyList<Int>()
+    private lateinit var listener: () -> Unit
+    private fun checkListener() = ::listener.isInitialized//::listener 调用函数类型
+    fun setOnItemClickListener(e: ()->Unit){
+        this.listener = e
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.adapter_view_pager_item, parent, false)
         return PagerViewHolder(itemView = itemView)
@@ -25,6 +31,9 @@ class ViewPager2Adapter: RecyclerView.Adapter<ViewPager2Adapter.PagerViewHolder>
 
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
         holder.bindData(position,list)
+        holder.itemView.setOnClickListener{
+            if (checkListener()) listener()
+        }
     }
 
     fun setList(list1: List<Int>){

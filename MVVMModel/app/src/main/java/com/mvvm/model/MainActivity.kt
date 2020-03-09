@@ -1,5 +1,6 @@
 package com.mvvm.model
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -18,12 +19,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
         setListener()
-        val adapter = ViewPager2Adapter()
+        val adapters = ViewPager2Adapter()
         val list = mutableListOf(1,2,3,4)
-        binding.viewPager2.adapter = adapter
-        adapter.setList(list)
-        binding.viewPager2.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-
+        adapters.setList(list)
+        binding.viewPager2.apply {
+            orientation = ViewPager2.ORIENTATION_VERTICAL
+            adapter = adapters
+        }
+        adapters.setOnItemClickListener {
+            ListActivity.skip(this)
+        }
     }
 
     private fun setListener(){
