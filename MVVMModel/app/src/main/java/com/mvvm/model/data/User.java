@@ -41,10 +41,11 @@ public class User{
         this.name = name;
     }
 
-    @Generated(hash = 1144922831)
-    public User(long id, String name) {
+    @Generated(hash = 446251977)
+    public User(long id, String name, int age) {
         this.id = id;
         this.name = name;
+        this.age = age;
     }
 
     @Generated(hash = 586692638)

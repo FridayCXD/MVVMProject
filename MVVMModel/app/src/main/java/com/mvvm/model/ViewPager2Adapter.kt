@@ -1,11 +1,12 @@
 package com.mvvm.model
 
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.mvvm.model.databinding.ViewPager2AdapterBinding
 
 /**
  * @ClassName: ViewPager2Adapter
@@ -31,6 +32,9 @@ class ViewPager2Adapter: RecyclerView.Adapter<ViewPager2Adapter.PagerViewHolder>
 
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
         holder.bindData(position,list)
+        holder.binding.itemTitle.setOnCloseListener {
+            holder.binding.itemTitle.visibility = View.GONE
+        }
         holder.itemView.setOnClickListener{
             if (checkListener()) listener()
         }
@@ -42,11 +46,11 @@ class ViewPager2Adapter: RecyclerView.Adapter<ViewPager2Adapter.PagerViewHolder>
     }
 
     class PagerViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        private val textView: TextView = itemView.findViewById(R.id.viewPager2Item)
+        val binding: ViewPager2AdapterBinding = ViewPager2AdapterBinding.bind(itemView)
         private val colors = arrayOf("#CCFF99","#41F1E5","#8D41F1","#FF99CC")
         fun bindData(position: Int, list: List<Int>) {
-            textView.text = list[position].toString()
-            textView.setBackgroundColor(Color.parseColor(colors[position]))
+            binding.viewPager2Item.text = list[position].toString()
+            binding.viewPager2Item.setBackgroundColor(Color.parseColor(colors[position]))
         }
     }
 }
