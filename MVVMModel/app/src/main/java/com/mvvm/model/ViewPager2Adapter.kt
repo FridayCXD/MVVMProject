@@ -1,12 +1,15 @@
 package com.mvvm.model
 
 import android.graphics.Color
-import android.util.Log
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.mvvm.model.databinding.ViewPager2AdapterBinding
+import com.mvvm.model.util.DPUtil
+import com.mvvm.model.widget.DrawableTextView
 
 /**
  * @ClassName: ViewPager2Adapter
@@ -51,6 +54,28 @@ class ViewPager2Adapter: RecyclerView.Adapter<ViewPager2Adapter.PagerViewHolder>
         fun bindData(position: Int, list: List<Int>) {
             binding.viewPager2Item.text = list[position].toString()
             binding.viewPager2Item.setBackgroundColor(Color.parseColor(colors[position]))
+            binding.viewPager2ItemFrameLayout.addView(addTags())
+        }
+
+        private fun addTags(): DrawableTextView{
+            val itemTags = LayoutInflater.from(App.application).inflate(R.layout.tag_text_item,null) as DrawableTextView
+            val drawables = arrayOfNulls<Drawable>(4)
+            drawables[0] = App.application.getDrawable(R.drawable.ic_location_on_black_24dp)
+            drawables[2] = App.application.getDrawable(R.drawable.ic_close_black_24dp)
+
+            val widths = arrayOfNulls<Int>(4)
+            widths[0] = DPUtil.dip2px(16f)
+            widths[2] = DPUtil.dip2px(18f)
+
+            val heights = arrayOfNulls<Int>(4)
+            heights[0] = DPUtil.dip2px(16f)
+            heights[2] = DPUtil.dip2px(18f)
+
+            val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+
+            itemTags.layoutParams = params
+            itemTags.setDrawables(drawables, widths, heights)
+            return itemTags
         }
     }
 }
