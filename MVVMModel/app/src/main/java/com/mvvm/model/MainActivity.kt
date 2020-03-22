@@ -5,8 +5,12 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.mvvm.model.databinding.ActivityMainBinding
+import com.mvvm.model.viewpager2.ListActivity
+import com.mvvm.model.viewpager2.ViewPager2Adapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -14,9 +18,15 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var viewModel: CommonContract.IViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+        viewModel = ViewModelProvider(
+            this,
+            CommonViewModel.Factory(intent.extras,App.application)
+        ).get(CommonViewModel::class.java)
+
         setListener()
         val adapters = ViewPager2Adapter()
         val list = mutableListOf(1,2,3,4)
@@ -55,3 +65,4 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
+

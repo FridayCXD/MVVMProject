@@ -1,4 +1,4 @@
-package com.mvvm.model
+package com.mvvm.model.viewpager2
 
 import android.graphics.Color
 import android.graphics.drawable.Drawable
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.mvvm.model.App
+import com.mvvm.model.R
 import com.mvvm.model.databinding.ViewPager2AdapterBinding
 import com.mvvm.model.util.DPUtil
 import com.mvvm.model.widget.DrawableTextView
@@ -26,7 +28,9 @@ class ViewPager2Adapter: RecyclerView.Adapter<ViewPager2Adapter.PagerViewHolder>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.adapter_view_pager_item, parent, false)
-        return PagerViewHolder(itemView = itemView)
+        return PagerViewHolder(
+            itemView = itemView
+        )
     }
 
     override fun getItemCount(): Int {
@@ -58,10 +62,15 @@ class ViewPager2Adapter: RecyclerView.Adapter<ViewPager2Adapter.PagerViewHolder>
         }
 
         private fun addTags(): DrawableTextView{
-            val itemTags = LayoutInflater.from(App.application).inflate(R.layout.tag_text_item,null) as DrawableTextView
+            val itemTags = LayoutInflater.from(App.application).inflate(
+                R.layout.tag_text_item,null) as DrawableTextView
             val drawables = arrayOfNulls<Drawable>(4)
-            drawables[0] = App.application.getDrawable(R.drawable.ic_location_on_black_24dp)
-            drawables[2] = App.application.getDrawable(R.drawable.ic_close_black_24dp)
+            drawables[0] = App.application.getDrawable(
+                R.drawable.ic_location_on_black_24dp
+            )
+            drawables[2] = App.application.getDrawable(
+                R.drawable.ic_close_black_24dp
+            )
 
             val widths = arrayOfNulls<Int>(4)
             widths[0] = DPUtil.dip2px(16f)

@@ -199,7 +199,7 @@ class DrawableTextView : AppCompatTextView {
         }
         return super.onTouchEvent(event)
     }
-
+    //移动画布的位置
     private fun translateText(
         canvas: Canvas?,
         drawablePadding: Int

@@ -1,4 +1,4 @@
-package com.mvvm.model
+package com.mvvm.model.viewpager2
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.mvvm.model.R
 import com.mvvm.model.databinding.FragmentVp2Binding
 
 /**
@@ -20,16 +21,23 @@ class VP2Fragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_vp2, container, false)
+        binding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_vp2, container, false)
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val args = arguments
         when(args?.get(INDEX) ?: 0){
-            ListActivity.PAGE_HOME -> binding.listLinearLayout.setBackgroundColor(resources.getColor(R.color.colorAccent))
-            ListActivity.PAGE_OTHERS -> binding.listLinearLayout.setBackgroundColor(resources.getColor(R.color.colorPrimary))
-            ListActivity.PAGE_ME -> binding.listLinearLayout.setBackgroundColor(resources.getColor(R.color.colorPrimaryDark))
+            ListActivity.PAGE_HOME -> binding.listLinearLayout.setBackgroundColor(resources.getColor(
+                R.color.colorAccent
+            ))
+            ListActivity.PAGE_OTHERS -> binding.listLinearLayout.setBackgroundColor(resources.getColor(
+                R.color.colorPrimary
+            ))
+            ListActivity.PAGE_ME -> binding.listLinearLayout.setBackgroundColor(resources.getColor(
+                R.color.colorPrimaryDark
+            ))
             else ->
                 binding.listLinearLayout.setBackgroundColor(resources.getColor(R.color.colorAccent))
         }
