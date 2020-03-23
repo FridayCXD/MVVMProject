@@ -1,4 +1,4 @@
-package com.mvvm.model.viewpager2
+package com.mvvm.model.viewpager2.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,13 +8,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.mvvm.model.R
 import com.mvvm.model.databinding.FragmentVp2Binding
+import com.mvvm.model.viewpager2.VP2FragmentActivity
 
 /**
  * @ClassName: VP2Fragment
  * @Description: 描述
  * @Author: xd on  2020-03-09 23:03
  */
-class VP2Fragment : Fragment() {
+class VP2HomeFragment : Fragment() {
     lateinit var binding: FragmentVp2Binding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,13 +30,13 @@ class VP2Fragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val args = arguments
         when(args?.get(INDEX) ?: 0){
-            ListActivity.PAGE_HOME -> binding.listLinearLayout.setBackgroundColor(resources.getColor(
+            VP2FragmentActivity.PAGE_HOME -> binding.listLinearLayout.setBackgroundColor(resources.getColor(
                 R.color.colorAccent
             ))
-            ListActivity.PAGE_OTHERS -> binding.listLinearLayout.setBackgroundColor(resources.getColor(
+            VP2FragmentActivity.PAGE_NEWS -> binding.listLinearLayout.setBackgroundColor(resources.getColor(
                 R.color.colorPrimary
             ))
-            ListActivity.PAGE_ME -> binding.listLinearLayout.setBackgroundColor(resources.getColor(
+            VP2FragmentActivity.PAGE_MINE -> binding.listLinearLayout.setBackgroundColor(resources.getColor(
                 R.color.colorPrimaryDark
             ))
             else ->
@@ -45,8 +46,8 @@ class VP2Fragment : Fragment() {
 
     companion object {
         const val INDEX = "_index"
-        fun getInstance(index: Int): VP2Fragment {
-            val fragment = VP2Fragment()
+        fun getInstance(index: Int): VP2HomeFragment {
+            val fragment = VP2HomeFragment()
             val bundle = Bundle()
             bundle.putInt(INDEX,index)
             fragment.arguments = bundle

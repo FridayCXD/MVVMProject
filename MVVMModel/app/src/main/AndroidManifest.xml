@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".viewpager2.ListActivity" />
+        <activity android:name=".viewpager2.VP2FragmentActivity" />
     </application>
 
 </manifest>

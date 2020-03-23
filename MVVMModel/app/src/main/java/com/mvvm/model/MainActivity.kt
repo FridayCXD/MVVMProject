@@ -5,11 +5,10 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.mvvm.model.databinding.ActivityMainBinding
-import com.mvvm.model.viewpager2.ListActivity
+import com.mvvm.model.viewpager2.VP2FragmentActivity
 import com.mvvm.model.viewpager2.ViewPager2Adapter
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -36,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             adapter = adapters
         }
         adapters.setOnItemClickListener {
-            ListActivity.skip(this)
+            VP2FragmentActivity.skip(this)
         }
     }
 
