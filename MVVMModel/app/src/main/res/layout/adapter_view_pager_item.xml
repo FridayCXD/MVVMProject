@@ -4,14 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data class="ViewPager2AdapterBinding">
-
     </data>
 
     <FrameLayout
         android:id="@+id/viewPager2ItemFrameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <com.mvvm.model.widget.DrawableTextView
             android:id="@+id/itemTitle"
             android:layout_width="wrap_content"
@@ -23,23 +21,11 @@
             android:paddingTop="@dimen/dp_3"
             android:paddingBottom="@dimen/dp_3"
             app:leftDrawable="@drawable/ic_location_on_black_24dp"
-            app:rightDrawable="@drawable/ic_close_black_24dp"
-            app:rightDrawableWidth="@dimen/dp_18"
-            app:rightDrawableHeight="@dimen/dp_18"
             app:leftDrawableWidth="@dimen/dp_15"
             app:leftDrawableHeight="@dimen/dp_15"
-            android:paddingStart="@dimen/dp_30"
-            android:paddingEnd="@dimen/dp_30"
-            android:text="@string/beijing" />
-
-        <TextView
-            android:id="@+id/viewPager2Item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:minHeight="@dimen/dp_300"
-            android:minWidth="@dimen/dp_300"
-            tools:text="ViewPager2的item" />
+            android:paddingStart="@dimen/dp_20"
+            android:paddingEnd="@dimen/dp_25"
+            tools:text="ViewPager2的item"
+            />
     </FrameLayout>
 </layout>

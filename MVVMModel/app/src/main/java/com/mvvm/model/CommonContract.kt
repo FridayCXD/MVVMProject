@@ -8,7 +8,9 @@ package com.mvvm.model
  */
 
 object CommonContract {
-    interface IView
+    interface IView {
+        fun closePage()
+    }
     interface IViewModel
     interface IModel
 }

@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="view"
+            type="com.mvvm.model.CommonContract.IView" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -12,7 +14,36 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
-        <include layout="@layout/activity_title_bar" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50">
+
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_arrow_back_black_24dp"
+                android:scaleType="center"
+                />
+            <!--使用dp可以防止其他机型字体适配问题-->
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_vertical"
+                android:textSize="16dp"
+                android:textColor="@android:color/black"
+                android:text="@string/beijing"
+                tools:text="标题"
+                tools:ignore="SpUsage" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@android:color/black"
+                android:layout_gravity="bottom"/>
+        </FrameLayout>
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager2"

@@ -11,56 +11,56 @@ import com.mvvm.model.databinding.ActivityMainBinding
 import com.mvvm.model.viewpager2.VP2FragmentActivity
 import com.mvvm.model.viewpager2.ViewPager2Adapter
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.ArrayList
 
 /**
  * main activity
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), CommonContract.IView {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: CommonContract.IViewModel
+    private val list = ArrayList<Int>()
+    private val adapterVP2 = ViewPager2Adapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.apply {
+            lifecycleOwner = this@MainActivity
+            view = this@MainActivity
+        }
         viewModel = ViewModelProvider(
             this,
-            CommonViewModel.Factory(intent.extras,App.application)
+            CommonViewModel.Factory(intent.extras, App.application)
         ).get(CommonViewModel::class.java)
 
-        setListener()
-        val adapters = ViewPager2Adapter()
-        val list = mutableListOf(1,2,3,4)
-        adapters.setList(list)
         binding.viewPager2.apply {
-            orientation = ViewPager2.ORIENTATION_VERTICAL
-            adapter = adapters
+            adapter = adapterVP2
         }
-        adapters.setOnItemClickListener {
-            VP2FragmentActivity.skip(this)
-        }
+        setListener()
+        initData()
     }
 
-    private fun setListener(){
-        findViewById<ImageView>(R.id.backBtn).setOnClickListener{finish()}
-        findViewById<TextView>(R.id.title).text = "首页"
-        viewPager2?.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
-            override fun onPageScrollStateChanged(state: Int) {
-                super.onPageScrollStateChanged(state)
-            }
+    private fun initData() {
+        list.addAll(listOf(1, 2, 3, 4))
+        adapterVP2.setList(list)
+    }
 
+
+    override fun closePage() {
+        onBackPressed()
+    }
+
+    private fun setListener() {
+        binding.viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
+                println("$position")
             }
-
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-                println("$position , $positionOffset")
-            }
-
         })
+        adapterVP2.setOnItemClickListener {
+            VP2FragmentActivity.skip(this)
+        }
+
     }
 
 }
