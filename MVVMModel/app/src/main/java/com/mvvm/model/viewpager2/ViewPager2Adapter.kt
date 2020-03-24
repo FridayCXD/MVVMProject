@@ -33,7 +33,7 @@ class ViewPager2Adapter : RecyclerView.Adapter<ViewPager2Adapter.PagerViewHolder
 
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
         holder.bindData(position, list)
-        holder.itemView.setOnClickListener{
+        holder.binding.verticalBtn.setOnClickListener{
             if (checkListener()) listener()
         }
     }
@@ -45,7 +45,7 @@ class ViewPager2Adapter : RecyclerView.Adapter<ViewPager2Adapter.PagerViewHolder
     }
 
     class PagerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val binding: ViewPager2AdapterBinding = ViewPager2AdapterBinding.bind(itemView)
+        val binding: ViewPager2AdapterBinding = ViewPager2AdapterBinding.bind(itemView)
         fun bindData(position: Int, list: List<Int>) {
             binding.itemTitle.text = "第${list[position]}个item"
         }

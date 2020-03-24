@@ -8,7 +8,7 @@
             type="com.mvvm.model.CommonContract.IView" />
     </data>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -24,6 +24,7 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_arrow_back_black_24dp"
                 android:scaleType="center"
+                android:onClick="@{view::closePage}"
                 />
             <!--使用dp可以防止其他机型字体适配问题-->
             <TextView
@@ -47,7 +48,16 @@
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager2"
+            android:layout_marginTop="@dimen/dp_50"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            android:layout_height="match_parent"/>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="@dimen/dp_20"
+            />
+    </FrameLayout>
 </layout>

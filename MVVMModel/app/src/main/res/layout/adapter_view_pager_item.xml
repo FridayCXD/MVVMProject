@@ -6,15 +6,18 @@
     <data class="ViewPager2AdapterBinding">
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/viewPager2ItemFrameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:showDividers="middle"
+        android:dividerPadding="@dimen/dp_5"
+        android:padding="@dimen/dp_20"
+        android:orientation="vertical">
         <com.mvvm.model.widget.DrawableTextView
             android:id="@+id/itemTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_20"
             android:gravity="center"
             android:drawablePadding="@dimen/dp_3"
             android:background="@drawable/tag_oval_bg_shape"
@@ -27,5 +30,10 @@
             android:paddingEnd="@dimen/dp_25"
             tools:text="ViewPager2的item"
             />
-    </FrameLayout>
+        <Button
+            android:id="@+id/verticalBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vertical"/>
+    </LinearLayout>
 </layout>

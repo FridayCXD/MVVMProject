@@ -1,5 +1,6 @@
 package com.mvvm.model
 
+import android.view.View
 
 /**
  * CommonContract.kt
@@ -9,8 +10,9 @@ package com.mvvm.model
 
 object CommonContract {
     interface IView {
-        fun closePage()
+        fun closePage(view: View)
     }
+
     interface IViewModel
     interface IModel
 }

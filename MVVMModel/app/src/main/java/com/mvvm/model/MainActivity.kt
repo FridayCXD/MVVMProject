@@ -2,6 +2,7 @@ package com.mvvm.model
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
@@ -46,7 +47,7 @@ class MainActivity : AppCompatActivity(), CommonContract.IView {
     }
 
 
-    override fun closePage() {
+    override fun closePage(view: View) {
         onBackPressed()
     }
 
@@ -60,7 +61,9 @@ class MainActivity : AppCompatActivity(), CommonContract.IView {
         adapterVP2.setOnItemClickListener {
             VP2FragmentActivity.skip(this)
         }
-
+        binding.switchBtn.setOnCheckedChangeListener { _, isChecked ->
+            binding.viewPager2.isUserInputEnabled = isChecked
+        }
     }
 
 }
