@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MVVMModel</string>
     <string name="beijing">北京</string>
+    <string name="title">标题</string>
 </resources>

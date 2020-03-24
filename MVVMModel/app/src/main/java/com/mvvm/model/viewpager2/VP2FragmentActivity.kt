@@ -30,8 +30,8 @@ class VP2FragmentActivity : AppCompatActivity(), VP2Contract.IView {
             view = this@VP2FragmentActivity
         }
         //VP2 默认是竖直滑动的
-        binding.listViewPager2.let {
-            it.adapter = VPAdapter(this@VP2FragmentActivity)
+        binding.listViewPager2.apply {
+            adapter = VPAdapter(this@VP2FragmentActivity)
         }
     }
 
