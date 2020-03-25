@@ -44,11 +44,24 @@ class MainActivity : AppCompatActivity(), CommonContract.IView {
     private fun initData() {
         list.addAll(listOf(1, 2, 3, 4))
         adapterVP2.setList(list)
+        binding.viewPager2.setPageTransformer(DepthPageTransformer())
     }
 
 
     override fun closePage(view: View) {
-        onBackPressed()
+        if (binding.viewPager2.currentItem == 0) {
+            onBackPressed()
+        } else {
+            binding.viewPager2.currentItem = binding.viewPager2.currentItem - 1
+        }
+    }
+
+    override fun onBackPressed() {
+        if (binding.viewPager2.currentItem == 0) {
+            super.onBackPressed()
+        } else {
+            binding.viewPager2.currentItem = binding.viewPager2.currentItem - 1
+        }
     }
 
     private fun setListener() {
@@ -62,9 +75,40 @@ class MainActivity : AppCompatActivity(), CommonContract.IView {
             VP2FragmentActivity.skip(this)
         }
         binding.switchBtn.setOnCheckedChangeListener { _, isChecked ->
-            binding.viewPager2.isUserInputEnabled = isChecked
+            binding.viewPager2.isUserInputEnabled = !isChecked
         }
     }
+
+    class DepthPageTransformer : ViewPager2.PageTransformer {
+        private val MIN_SCALE = 0.75f
+        override fun transformPage(view: View, position: Float) {
+            view.apply {
+                val pageWidth = width
+                when {
+                    position < -1 -> { // [-Infinity,-1)
+                        alpha = 0f
+                    }
+                    position <= 0 -> { // [-1,0]
+                        alpha = 1f
+                        translationX = 0f
+                        scaleX = 1f
+                        scaleY = 1f
+                    }
+                    position <= 1 -> { // (0,1]
+                        alpha = 1 - position
+                        translationX = pageWidth * -position
+                        val scaleFactor = (MIN_SCALE + (1 - MIN_SCALE) * (1 - Math.abs(position)))
+                        scaleX = scaleFactor
+                        scaleY = scaleFactor
+                    }
+                    else -> { // (1,+Infinity]
+                        alpha = 0f
+                    }
+                }
+            }
+        }
+    }
+
 
 }
 
