@@ -10,11 +10,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
 import com.mvvm.model.R
 import com.mvvm.model.databinding.ActivityListBinding
 import com.mvvm.model.viewpager2.fragment.VP2HomeFragment
-import com.mvvm.model.viewpager2.fragment.VPHomeFragment
+import com.mvvm.model.viewpager2.home.VPHomeFragment
 
 /**
  * @ClassName: ListActivity

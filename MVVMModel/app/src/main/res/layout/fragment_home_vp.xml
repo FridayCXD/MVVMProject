@@ -2,7 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data class="FragmentHomeDataBinding">
-
+        <variable
+            name="view"
+            type="com.mvvm.model.viewpager2.home.VPHomeContract.IView" />
     </data>
 
     <LinearLayout
@@ -10,8 +12,22 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{view::delete}"
+            android:text="@string/delete" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{view::add}"
+            android:text="@string/add" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/query"
+            android:onClick="@{view::findAll}"/>
     </LinearLayout>
 </layout>

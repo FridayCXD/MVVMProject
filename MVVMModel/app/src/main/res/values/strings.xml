@@ -3,4 +3,7 @@
     <string name="beijing">北京</string>
     <string name="title">标题</string>
     <string name="vertical">竖直滑动</string>
+    <string name="delete">删除</string>
+    <string name="add">添加</string>
+    <string name="query">查询</string>
 </resources>
