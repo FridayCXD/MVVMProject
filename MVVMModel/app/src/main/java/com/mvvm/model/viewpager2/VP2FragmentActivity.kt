@@ -14,6 +14,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.mvvm.model.R
 import com.mvvm.model.databinding.ActivityListBinding
 import com.mvvm.model.viewpager2.fragment.VP2HomeFragment
+import com.mvvm.model.viewpager2.fragment.VPHomeFragment
 
 /**
  * @ClassName: ListActivity
@@ -60,7 +61,7 @@ class VP2FragmentActivity : AppCompatActivity(), VP2Contract.IView {
             val fragment: Fragment
             when (position) {
                 0 -> if (fragments[0] == null) {
-                    fragment = VP2HomeFragment.getInstance(PAGE_HOME)
+                    fragment = VPHomeFragment.getInstance()
                     fragments.put(0, fragment)
                 } else {
                     fragment = fragments[0]

@@ -49,4 +49,7 @@ dependencies {
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation 'org.greenrobot:greendao:3.2.2'
     implementation 'com.google.android.material:material:1.0.0'// add library
+    // Room
+    implementation 'android.arch.persistence.room:runtime:1.0.0-alpha9'
+    kapt 'android.arch.persistence.room:compiler:1.0.0-alpha9'
 }
